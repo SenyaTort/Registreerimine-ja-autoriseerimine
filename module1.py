@@ -8,7 +8,7 @@ while True:
     print("2 - Autoriseerimine")
     print("3 - Paroolivahetus")
     print("4 - Paroolitaastamine")
-    print("5 - Välju")
+    # print("5 - Välju")
     valik = input("Sisesta valik (1-5): ")
     if valik == '1':
         registreerimine(k, s)
