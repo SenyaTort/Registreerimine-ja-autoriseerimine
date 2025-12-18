@@ -1,6 +1,6 @@
 from MyModule import *
-k=['Mari','Juku','Kati']
-s=['1234','5678','abcd']
+k=[]
+s=[]
 
 while True:
     print("Vali tegevus: ")
@@ -9,6 +9,7 @@ while True:
     print("3 - Paroolivahetus")
     print("4 - Paroolitaastamine")
     print("5 - Valju")
+
     valik = input("Sisesta valik (1-5): ")
     if valik == '1':
         registreerimine(k, s)
