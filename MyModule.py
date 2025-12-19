@@ -1,45 +1,42 @@
 from random import  *
 import string
 from random import choice
-
 k=[]
 s=[]
-
 def registreerimine(k:list,s:list)->any:
-    print("1-Jah")
-    print("2-Ei")
-    Gener=input("Kas sa tahad parooli generereida(1/2)? ")
-    if Gener== "1":
+        kasutaja=input("Sisesta kasutaja nimi: ")
+        if k.count(kasutaja)==1:
+            print("See login on juba olemas")
+            return
+        elif k.count(kasutaja)==0:
+            k.append(kasutaja)
+            print("Kasutaja on registreeritud")
         while True:
-            try:
-                kasutaja=input("Sisesta kasutaja nimi: ")
-                if k.count(kasutaja)==1:
-                    print("See login on olemas")
-                elif k.count(kasutaja)==0:
-                    k.append(kasutaja)
-                    parool=input("Sisesta parool: ")
+            gener=input("kas te soovite genereerida parooli? (y/n): ").lower()
+            if gener=="n":
+                parool=input("Sisesta parool: ") 
+                on_num = any(char.isdigit() for char in parool)
+                on_suur = any(char.isupper() for char in parool)
+                on_vaike = any(char.islower() for char in parool)
+                on_sumbol = any(not char.isalnum() for char in parool)
+                if on_num and on_suur and on_vaike and on_sumbol and len(parool) >= 8:
                     s.append(parool)
-                    print("parool on loodunud")
+                    print("Kasutaja on registreeritud")
                     break
-            except:
-                ValueError
-    if Gener== "2":
-        while True:
-            try:
-                import random
-                str0 = ".,:;!_*-+()/#¤%&"
-                str1 = '0123456789'
-                str2 = 'qwertyuiopasdfghjklzxcvbnm'
-                str3 = str2.upper()
-                str4 = str0 + str1 + str2 + str3
-                ls = list(str4)
-                random.shuffle(ls)
-                psword = ''.join([random.choice(ls) for x in range(12)])
-                print(psword)
-            except:
-                ValueError
-    else:
-        print("Sisesta numbriga")
+                else:
+                    print("Parool ei ole piisavalt tugev. Proovi uuesti.") 
+            elif gener=="y":
+                pikkus = 12
+                tahed = string.ascii_letters
+                numbrid = string.digits
+                sumbolid = string.punctuation
+                koik = tahed + numbrid + sumbolid
+                genereeritud_parool = join(random.choice(koik) for i in range(pikkus))
+                s.append(genereeritud_parool)
+                print("Genereeritud parool on: ", genereeritud_parool)
+                break
+            else:
+                            print("Sisesta y voi n")
 def Autoriseerimine(k:list,s:list)->any:
     while True:
         try:
